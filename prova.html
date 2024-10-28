@@ -26,7 +26,7 @@
         a.open("GET", "dati.json", true);
         a.onload=function(){
             if(a.status==200){
-                var dati=JSON.parse(a.responseText);
+                var data=JSON.parse(a.responseText);
                 for(int i=0;i<data.length;i++){
                     var row=tabella.insertRow();
                     row.insertCell(0).textContent=data[i].nome;
