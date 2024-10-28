@@ -17,32 +17,29 @@
                 <th>citta</th>
                 <th>telefono</th>
             </tr>
-
         </thead>
+        <tbody id="tbody">
+        </tbody>
     </table></center>
     <script>
-        var a=new XMLHttpRequest();
-        var tabella=document.getElementById("tabella");
+        var a = new XMLHttpRequest();
+        var tbody = document.getElementById("tbody");
         a.open("GET", "dati.json", true);
-        a.onload=function(){
-            if(a.status==200){
-                var data=JSON.parse(a.responseText);
-                for(int i=0;i<data.length;i++){
-                    var row=tabella.insertRow();
-                    row.insertCell(0).textContent=data[i].nome;
-                    row.insertCell(1).textContent=data[i].cognome;
-                    row.insertCell(2).textContent=data[i].eta;
-                    row.insertCell(3).textContent=data[i].indirizzo;
-                    row.insertCell(4).textContent=data[i].citta;
-                    row.insertCell(5).textContent=data[i].telefono;
+        a.onload = function() {
+            if (a.status == 200) {
+                var data = JSON.parse(a.responseText);
+                for (var i = 0; i < data.length; i++) {
+                    var row = tbody.insertRow();
+                    row.insertCell(0).textContent = data[i].nome;
+                    row.insertCell(1).textContent = data[i].cognome;
+                    row.insertCell(2).textContent = data[i].eta;
+                    row.insertCell(3).textContent = data[i].indirizzo;
+                    row.insertCell(4).textContent = data[i].citta;
+                    row.insertCell(5).textContent = data[i].telefono;
                 }
             }
         };
         a.send();
-
     </script>
-
-
-    
 </body>
 </html>
