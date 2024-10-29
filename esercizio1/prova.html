@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lavoro1</title>
+</head>
+<body style="background-color: black;">
+    <center>
+        <table border="2" id="tabella" style="border-color: black; color: black; background-color: rgb(197, 234, 221); border-top-width: 400px;">
+        <thead>
+            <tr>
+                <th>nome</th>
+                <th>cognome</th>
+                <th>eta</th>
+                <th>indirizzo</th>
+                <th>citta</th>
+                <th>telefono</th>
+            </tr>
+
+        </thead>
+    </table></center>
+    <script>
+        var a=new XMLHttpRequest();
+        var tabella=document.getElementById("tabella");
+        a.open("GET", "dati.json", true);
+        a.onload=function(){
+            if(a.status==200){
+                var datad=JSON.parse(a.responseText);
+                for(int i=0;i<data.length;i++){
+                    var row=tabella.insertRow();
+                    row.insertCell(0).textContent=data[i].nome;
+                    row.insertCell(1).textContent=data[i].cognome;
+                    row.insertCell(2).textContent=data[i].eta;
+                    row.insertCell(3).textContent=data[i].indirizzo;
+                    row.insertCell(4).textContent=data[i].citta;
+                    row.insertCell(5).textContent=data[i].telefono;
+                }
+                var (JSON.data(4))
+                <table border ="2" id="tabella" style="border-color: black; color: rgb(197,234,221);border-top-width:400px;">
+                    
+        };
+        a.send();
+
+    </script>
+
+
+    
+</body>
+</html>

@@ -1,0 +1,26 @@
+[
+    {
+        "nome":"alessandro",
+        "cognome":"magno",
+        "eta":30,
+        "indirizzo":"via cannizzaro",
+        "citta":"rho",
+        "telefono":"3334445556"
+    },
+    {
+        "nome":"matteo",
+        "cognome":"rossi",
+        "eta":18,
+        "indirizzo":"via rho",
+        "citta":"lainate",
+        "telefono":"3456789932"
+    },
+    {
+        "nome":"jessica",
+        "cognome":"verdi",
+        "eta":45,
+        "indirizzo":"via padova",
+        "citta":"padova",
+        "telefono":"3421233229"
+    }
+]
