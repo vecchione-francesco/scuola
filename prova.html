@@ -28,18 +28,18 @@
                 <th>telefono</th>
             </tr>
         </thead>
-        <tbody id="tbody">
+        <tbody id="scatola">
         </tbody>
     </table></center>
     <script>
         var a = new XMLHttpRequest();
-        var tbody = document.getElementById("tbody");
+        var tbody = document.getElementById("scatola");
         a.open("GET", "dati.json", true);
         a.onload = function() {
             if (a.status == 200) {
                 var data = JSON.parse(a.responseText);
                 for (var i = 0; i < data.length; i++) {
-                    var row = tbody.insertRow();
+                    var row = scatola.insertRow();
                     row.insertCell(0).textContent = data[i].nome;
                     row.insertCell(1).textContent = data[i].cognome;
                     row.insertCell(2).textContent = data[i].eta;
