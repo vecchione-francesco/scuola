@@ -1,0 +1,77 @@
+<!DOCTYPE html><!-- saved from url=(0014)about:internet -->
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body style="background-color: rgb(248, 93, 93);">
+    <center>
+        <table id="tabella" style="background-color: aliceblue;">
+            <style>
+                #tabella {
+                    border: 1px solid black;
+                    padding: 2%;
+                    border-radius: 7%;
+                }
+                #tabella th, #tabella td {
+                    border: 1px solid black;
+                    text-align: center;
+                    padding: 4px;
+                }
+            </style>
+            <thead>
+                <tr>
+                    <th>nome</th>
+                    <th>cognome</th>
+                    <th>eta</th>
+                    <th>indirizzo</th>
+                    <th>citta</th>
+                    <th>telefono</th>
+                    <th>Immagine</th> 
+                </tr>
+            </thead>
+            <tbody id="scatola">
+            </tbody>
+        </table>
+    </center>
+
+    <script>
+        var a = new XMLHttpRequest();
+        var tbody = document.getElementById("scatola");
+        a.open("GET", "dati3.json", true);
+        a.onload = function() {
+            if (a.status == 200) {
+                var data = JSON.parse(a.responseText);
+                for (var i = 0; i < data.length; i++) {
+                    var row = tbody.insertRow(); // Usa tbody invece di scatola
+                    row.insertCell(0).textContent = data[i].nome;
+                    row.insertCell(1).textContent = data[i].cognome;
+                    row.insertCell(2).textContent = data[i].eta;
+                    row.insertCell(3).textContent = data[i].indirizzo;
+                    row.insertCell(4).textContent = data[i].citta;
+                    row.insertCell(5).textContent = data[i].telefono;
+
+                    // Aggiungi l'immagine cliccabile che reindirizza a una pagina vuota
+                    var cellaImmagine = row.insertCell(6); // Aggiungi una nuova cella per l'immagine
+                    var img = document.createElement("img");
+                    img.src = data[i].imgUrl; // Usa l'URL dell'immagine da JSON
+                    img.alt = "immagini";
+                    img.style.width = "50px"; 
+                    img.style.height = "50px";// Imposta la larghezza dell'immagine
+                    img.style.cursor = "pointer"; // Imposta il cursore come pointer per indicare cliccabile
+                    img.onclick = function(i) {
+                        return function() {
+                            window.location.href = data[i].paginaVuota; // Rimpiazza con l'URL della pagina vuota
+                        };
+                    }(i); // Passa l'indice i per utilizzare la paginaVuota corretta
+                    cellaImmagine.appendChild(img);
+                }
+            }
+        };
+        a.send();
+    </script>
+</body>
+</html>
+
+
