@@ -44,7 +44,7 @@
             if (a.status == 200) {
                 var data = JSON.parse(a.responseText);
                 for (var i = 0; i < data.length; i++) {
-                    var row = tbody.insertRow(); // Usa tbody invece di scatola
+                    var row = tbody.insertRow();
                     row.insertCell(0).textContent = data[i].nome;
                     row.insertCell(1).textContent = data[i].cognome;
                     row.insertCell(2).textContent = data[i].eta;
@@ -52,19 +52,18 @@
                     row.insertCell(4).textContent = data[i].citta;
                     row.insertCell(5).textContent = data[i].telefono;
 
-                    // Aggiungi l'immagine cliccabile che reindirizza a una pagina vuota
-                    var cellaImmagine = row.insertCell(6); // Aggiungi una nuova cella per l'immagine
+                    var cellaImmagine = row.insertCell(6);
                     var img = document.createElement("img");
-                    img.src = data[i].imgUrl; // Usa l'URL dell'immagine da JSON
+                    img.src = data[i].imgUrl;
                     img.alt = "immagini";
                     img.style.width = "50px"; 
-                    img.style.height = "50px";// Imposta la larghezza dell'immagine
-                    img.style.cursor = "pointer"; // Imposta il cursore come pointer per indicare cliccabile
+                    img.style.height = "50px";
+                    img.style.cursor = "pointer"; 
                     img.onclick = function(i) {
                         return function() {
-                            window.location.href = data[i].paginaVuota; // Rimpiazza con l'URL della pagina vuota
+                            window.location.href = data[i].paginaVuota;
                         };
-                    }(i); // Passa l'indice i per utilizzare la paginaVuota corretta
+                    }(i);
                     cellaImmagine.appendChild(img);
                 }
             }
