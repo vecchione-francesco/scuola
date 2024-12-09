@@ -1,0 +1,32 @@
+[
+    {
+        "nome":"alessandro",
+        "cognome":"magno",
+        "eta":30,
+        "indirizzo":"via cannizzaro",
+        "citta":"rho",
+        "telefono":[1234567891,2354673673,7778789885],
+        "imgUrl": "https://oculoplastica.it/wp-content/uploads/2016/06/estetica-uomo.jpg",
+        "paginaVuota": "vuota.html" 
+    },
+    {
+        "nome":"matteo",
+        "cognome":"rossi",
+        "eta":18,
+        "indirizzo":"via rho",
+        "citta":"lainate",
+        "telefono":[43214567891,2454673673,9978789885],
+        "imgUrl": "https://compass-media.vogue.it/photos/63d7aa469690d955e74436ea/2:3/w_2560%2Cc_limit/rege-jean-page-uomo-piu-bello.jpg",
+        "paginaVuota": "vuota2.html" 
+    },
+    {
+        "nome":"jessica",
+        "cognome":"verdi",
+        "eta":45,
+        "indirizzo":"via padova",
+        "citta":"padova",
+        "telefono":[3456576890,7678543209,9878789115],
+        "imgUrl": "https://img.freepik.com/foto-premium/ritratto-di-un-uomo-sorridente-con-la-barba_604472-84069.jpg",
+        "paginaVuota": "vuota3.html" 
+    }
+]

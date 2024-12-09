@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>esercizio 4</title>
+    <style>
+        
+     
+        #tabella {
+        border-collapse: collapse;
+        width: 80%;
+        background-color: #f7faff;
+        overflow: hidden;
+    }
+    #tabella th {
+        background-color: #007bff;
+        color: white;
+        padding: 10px;
+        font-weight: bold;
+        border-bottom: 3px solid #007bff;
+    }
+
+    #tabella td {
+        border-right: 3px solid #007bff;
+        border-left: 3px solid #007bff;
+        padding: 10px;
+        text-align: center;
+        border-bottom: 3px solid #007bff;
+        color: #000000;
+        font-size: 15px;
+    }
+    </style>
+</head>
+<body style="background-color: rgb(0, 0, 0);">
+    <center>
+        <table id="tabella">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Cognome</th>
+                    <th>Età</th>
+                    <th>Indirizzo</th>
+                    <th>Città</th>
+                    <th>Telefono</th>
+                    <th>Immagine</th>
+                    <th>Portfolio</th>
+                </tr>
+            </thead>
+            <tbody id="scatola">
+            </tbody>
+        </table>
+    </center>
+
+    <script>
+        var a = new XMLHttpRequest();
+        var tbody = document.getElementById("scatola");
+        a.open("GET", "dati3.json", true);
+        a.onload = function() {
+            if (a.status == 200) {
+                var data = JSON.parse(a.responseText);
+                for (var i = 0; i < data.length; i++) {
+                    var row = tbody.insertRow();
+
+                    row.insertCell(0).textContent = data[i].nome;
+                    row.insertCell(1).textContent = data[i].cognome;
+                    row.insertCell(2).textContent = data[i].eta;
+                    row.insertCell(3).textContent = data[i].indirizzo;
+                    row.insertCell(4).textContent = data[i].citta;
+                    row.insertCell(5).textContent = data[i].telefono;
+
+                    var cellaImmagine = row.insertCell(6);
+                    var img = document.createElement("img");
+                    img.src = data[i].imgUrl; 
+                    img.alt = "Immagine";
+                    img.style.width = "50px";
+                    img.style.height = "50px";
+                    img.style.cursor = "pointer";
+                    img.onclick = function(i) {
+                        return function() {
+                            window.location.href = data[i].paginaVuota; 
+                        };
+                    }(i);
+                    cellaImmagine.appendChild(img);
+
+                    
+                    var cellaDettagli = row.insertCell(7);
+                    var button = document.createElement("button");
+                    button.textContent = "portfolio qui";
+                    button.style.cursor = "pointer";
+                    button.onclick = function(i) {
+                        return function() {
+                            var portfolioUrl = `portfolio.html?persona=${encodeURIComponent(data[i].nome)}`;
+                            window.location.href = portfolioUrl;
+                        };
+                    }(i);
+                    cellaDettagli.appendChild(button);
+                }
+            }
+        };
+        a.send();
+    </script>
+</body>
+</html>
