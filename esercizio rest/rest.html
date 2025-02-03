@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elenco Post</title>
+<script>
+function ottieniPost() {
+  const apiUrl = 'https://www.wpdemo.net/wp-json/wp/v2/posts';
+
+  fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+      const listaPost = document.getElementById('lista-post');
+      listaPost.innerHTML = ''; 
+
+      data.forEach(post => {
+        const titolo = document.createElement('h2');
+        titolo.textContent = post.title.rendered;
+
+        const contenuto = document.createElement('div');
+        contenuto.innerHTML = post.content.rendered;
+
+        const elementoLista = document.createElement('li');
+        elementoLista.appendChild(titolo);
+        elementoLista.appendChild(contenuto);
+        listaPost.appendChild(elementoLista);
+      });
+    })
+    .catch(error => {
+      console.error('Errore durante la richiesta:', error);
+    });
+  }
+</script>
+</head>
+<body>
+  <h1>Elenco Post</h1>
+  <ul id="lista-post"></ul>
+
+  <button onclick="ottieniPost()">Aggiorna Elenco</button>
+
+  <script>
+    ottieniPost();
+  </script>
+</body>
+</html>
+
+
+
