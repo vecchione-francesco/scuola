@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elenco dei Post</title>
+    <title>elenco link</title>
 </head>
 <body>
-    <h1>Elenco dei Post</h1>
+    <h1>rest</h1>
     <ul id="post-list"></ul>
 
     <script>
-        const apiUrl = 'https://demo.wp-api.org/wp-json/wp/v2/posts';
+        const apiUrl = 'https://wordpress.org/news/wp-json/wp/v2/posts';
 
         async function fetchPosts() {
             try {
@@ -22,9 +22,9 @@
             }
         }
 
-
         function displayPosts(posts) {
             const postList = document.getElementById('post-list');
+            postList.innerHTML = ""; // Pulisce la lista prima di riempirla
             posts.forEach(post => {
                 const listItem = document.createElement('li');
                 listItem.innerHTML = `<a href="${post.link}" target="_blank">${post.title.rendered}</a>`;
@@ -36,6 +36,7 @@
     </script>
 </body>
 </html>
+
 
 
 
