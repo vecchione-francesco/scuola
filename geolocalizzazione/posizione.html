@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Geolocalizzazione</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASndhyzxZccoAvamthaJYuVsEnwe00Dlo&callback=initMap" async defer></script>
+    <script>
+        function initMap() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var userLocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+
+                    console.log('Posizione rilevata:', userLocation);
+
+                    document.getElementById('location-text').innerHTML = `Latitudine: ${userLocation.lat}, Longitudine: ${userLocation.lng}`;
+
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        center: userLocation,
+                        zoom: 14
+                    });
+
+                    new google.maps.marker.AdvancedMarkerElement({
+                        position: userLocation,
+                        map: map,
+                        title: 'La tua posizione'
+                    });
+                }, function(error) {
+                    let errorMessage;
+                    console.error('Errore geolocalizzazione:', error);
+                    switch (error.code) {
+                        case error.PERMISSION_DENIED:
+                            errorMessage = "Permesso negato. Consenti l'accesso alla posizione.";
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            errorMessage = "Posizione non disponibile. Prova a riattivare il GPS.";
+                            break;
+                        case error.TIMEOUT:
+                            errorMessage = "Tempo di richiesta scaduto. Riprova.";
+                            break;
+                        default:
+                            errorMessage = "Errore sconosciuto.";
+                    }
+                    alert('Errore nella geolocalizzazione: ' + errorMessage);
+                }, {
+                    enableHighAccuracy: true,
+                    timeout: 10000,
+                    maximumAge: 0
+                });
+            } else {
+                alert('Geolocalizzazione non supportata dal browser.');
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #add8e6;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        #location-container {
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        #map {
+            width: 100%;
+            height: 500px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body onload="initMap()">
+    <div id="location-container">
+        <h2>Ecco la tua posizione</h2>
+        <p id="location-text">Caricamento...</p>
+    </div>
+    <div id="map"></div>
+</body>
+</html>
+
+
+
+
+
+
+
